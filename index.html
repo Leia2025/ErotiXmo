@@ -1,26 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>🔥 Fuego animado</title>
-  <style>
-    body {
-      background: #000; /* solo para probar */
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corazones que suben y explotan</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at bottom, #ffb6c1, #ff69b4, #c71585);
+    height: 100vh;
+    width: 100vw;
+  }
 
-    img {
-      width: 64px;     /* tamaño pequeño */
-      height: auto;
-      pointer-events: none;
+  .corazon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    transform: rotate(-45deg);
+    animation: subir 6s linear forwards;
+  }
+
+  .corazon::before,
+  .corazon::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border-radius: 50%;
+  }
+
+  .corazon::before {
+    top: -15px;
+    left: 0;
+  }
+
+  .corazon::after {
+    left: 15px;
+    top: 0;
+  }
+
+  @keyframes subir {
+    0% {
+      transform: translateY(100vh) rotate(-45deg) scale(1);
+      opacity: 1;
     }
-  </style>
+    70% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10vh) rotate(-45deg) scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes explosion {
+    0% { transform: scale(1) rotate(-45deg); opacity: 1; }
+    100% { transform: scale(3) rotate(-45deg); opacity: 0; }
+  }
+</style>
 </head>
 <body>
-  <img src="fire.gif" alt="Fuego animado">
+
+<script>
+function crearCorazon() {
+  const corazon = document.createElement('div');
+  corazon.classList.add('corazon');
+
+  // Posición horizontal aleatoria
+  corazon.style.left = Math.random() * 100 + 'vw';
+  // Tamaño aleatorio
+  const size = Math.random() * 30 + 10;
+  corazon.style.width = size + 'px';
+  corazon.style.height = size + 'px';
+  corazon.style.animationDuration = (4 + Math.random() * 3) + 's';
+
+  document.body.appendChild(corazon);
+
+  // Explota en un momento aleatorio mientras sube
+  const tiempoExplosion = Math.random() * 4000 + 2000; // entre 2 y 6 s
+  setTimeout(() => {
+    corazon.style.animation = 'explosion 0.5s ease-out forwards';
+  }, tiempoExplosion);
+
+  // Eliminar tras la animación
+  setTimeout(() => {
+    corazon.remove();
+  }, 7000);
+}
+
+// Crear corazones cada cierto tiempo
+setInterval(crearCorazon, 300);
+</script>
+
 </body>
 </html>
+
