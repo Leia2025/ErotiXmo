@@ -2,32 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🔥</title>
+  <title>Logo Aura Caución animado</title>
   <style>
-    html, body {
+    body {
+      background: linear-gradient(135deg, #034c89, #d0e4ff); /* fondo de prueba */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin: 0;
-      padding: 0;
-      background: none;
-      overflow: hidden;
-      display: inline-block;
     }
-    .fuego {
-      font-size: 60px;
-      animation: flotar 1.5s ease-in-out infinite alternate,
-                 parpadeo 0.3s infinite;
-    }
-    @keyframes flotar {
-      from { transform: translateY(0); }
-      to { transform: translateY(-10px); }
-    }
-    @keyframes parpadeo {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.6); }
+
+    iframe {
+      width: 320px;  /* ajusta al tamaño exacto de la animación */
+      height: 180px;
+      border: none;
+      background: transparent; /* <- clave */
     }
   </style>
 </head>
 <body>
-  <div class="fuego">🔥</div>
+  <iframe src="logo_animado.html" allowtransparency="true"></iframe>
 </body>
 </html>
