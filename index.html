@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Logo Aura Caución animado</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #034c89, #d0e4ff); /* fondo de prueba */
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    overflow: hidden;
+  }
 
-    iframe {
-      width: 320px;  /* ajusta al tamaño exacto de la animación */
-      height: 180px;
-      border: none;
-      background: transparent; /* <- clave */
-    }
-  </style>
+  .fuego {
+    font-size: 48px;
+    animation: flame 1s ease-in-out infinite alternate;
+  }
+
+  @keyframes flame {
+    0%   { transform: scale(1) rotate(0deg); filter: brightness(1); }
+    50%  { transform: scale(1.2) rotate(5deg); filter: brightness(1.3); }
+    100% { transform: scale(1) rotate(-5deg); filter: brightness(1); }
+  }
+</style>
 </head>
 <body>
-  <iframe src="logo_animado.html" allowtransparency="true"></iframe>
+  <div class="fuego">🔥</div>
 </body>
 </html>
