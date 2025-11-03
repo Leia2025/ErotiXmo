@@ -1,107 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Corazones que suben y explotan</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background: radial-gradient(circle at bottom, #ffc1cc, #ff66b2, #b03060);
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .corazon {
-    position: absolute;
-    transform: rotate(-45deg);
-    animation: subir linear forwards;
-    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
-  }
-
-  .corazon::before,
-  .corazon::after {
-    content: "";
-    position: absolute;
-    background-color: inherit;
-    border-radius: 50%;
-  }
-
-  .corazon::before {
-    top: -50%;
-    left: 0;
-  }
-
-  .corazon::after {
-    left: 50%;
-    top: 0;
-  }
-
-  @keyframes subir {
-    0% {
-      transform: translateY(100vh) rotate(-45deg) scale(1);
-      opacity: 1;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔥</title>
+  <style>
+    body {
+      margin: 0;
+      background: transparent; /* sin fondo */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
     }
-    80% {
-      opacity: 1;
+    .contenedor {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    100% {
-      transform: translateY(-10vh) rotate(-45deg) scale(0.9);
-      opacity: 0;
+    .fuego {
+      font-size: 60px;
+      animation: flotar 1.5s ease-in-out infinite alternate,
+                 parpadeo 0.3s infinite;
     }
-  }
-
-  @keyframes explosion {
-    0% { transform: scale(1) rotate(-45deg); opacity: 1; filter: brightness(1); }
-    50% { transform: scale(2.5) rotate(-45deg); filter: brightness(3); }
-    100% { transform: scale(3) rotate(-45deg); opacity: 0; filter: brightness(0); }
-  }
-</style>
+    @keyframes flotar {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+    @keyframes parpadeo {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.6); }
+    }
+  </style>
 </head>
 <body>
-
-<script>
-function crearCorazon() {
-  const corazon = document.createElement('div');
-  corazon.classList.add('corazon');
-
-  // Colores variados (pasteles y vivos)
-  const colores = ['#ff4d6d', '#ff85a2', '#ffb6c1', '#ffa6c9', '#ff99cc', '#f78fb3', '#e84393', '#fff0f5'];
-  const color = colores[Math.floor(Math.random() * colores.length)];
-  corazon.style.backgroundColor = color;
-
-  // Tamaño aleatorio
-  const size = Math.random() * 40 + 15;
-  corazon.style.width = size + 'px';
-  corazon.style.height = size + 'px';
-
-  // Posición horizontal aleatoria
-  corazon.style.left = Math.random() * 100 + 'vw';
-
-  // Duración del ascenso aleatoria
-  const duracion = 5 + Math.random() * 4;
-  corazon.style.animationDuration = duracion + 's';
-
-  // Iniciar animación de subida
-  corazon.style.animationName = 'subir';
-
-  document.body.appendChild(corazon);
-
-  // Explosión aleatoria durante la subida
-  const tiempoExplosion = Math.random() * (duracion * 1000 - 2000) + 1000;
-  setTimeout(() => {
-    corazon.style.animation = 'explosion 0.6s ease-out forwards';
-  }, tiempoExplosion);
-
-  // Eliminar tras finalizar
-  setTimeout(() => corazon.remove(), duracion * 1000 + 1000);
-}
-
-// Crear corazones continuamente
-setInterval(crearCorazon, 250);
-</script>
-
+  <div class="contenedor">
+    <div class="fuego">🔥</div>
+  </div>
 </body>
 </html>
